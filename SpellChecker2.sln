@@ -15,6 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpellChecker.Web", "SpellCh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpellChecker.Web.Tests", "SpellChecker.Web.Tests\SpellChecker.Web.Tests.csproj", "{0971106C-B413-41C6-A1BC-AFF0A29D382D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SpellChecker.SQL", "SpellChecker.SQL", "{1F1FEA59-73CE-40F5-9F05-E7023A9FD3EF}"
+	ProjectSection(SolutionItems) = preProject
+		SeedTables.sql = SeedTables.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
