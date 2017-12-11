@@ -5,6 +5,16 @@ VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpellChecker.Contracts", "SpellChecker.Contracts\SpellChecker.Contracts.csproj", "{75C30714-CFB3-4A65-BF88-BED6C1638E67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpellChecker.Data", "SpellChecker.Data\SpellChecker.Data.csproj", "{301E7545-29CF-4A52-854D-7643B4923067}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpellChecker.Services", "SpellChecker.Services\SpellChecker.Services.csproj", "{BE0B9EED-E5B1-41F7-A360-47134F99FA36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpellChecker.Models", "SpellChecker.Models\SpellChecker.Models.csproj", "{177CB45F-95A7-43FE-983B-2148345BA7C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpellChecker.Web", "SpellChecker.Web\SpellChecker.Web.csproj", "{6608B727-46EF-4C8C-A44E-0B83C801E3C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpellChecker.Web.Tests", "SpellChecker.Web.Tests\SpellChecker.Web.Tests.csproj", "{0971106C-B413-41C6-A1BC-AFF0A29D382D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +25,26 @@ Global
 		{75C30714-CFB3-4A65-BF88-BED6C1638E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75C30714-CFB3-4A65-BF88-BED6C1638E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75C30714-CFB3-4A65-BF88-BED6C1638E67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{301E7545-29CF-4A52-854D-7643B4923067}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{301E7545-29CF-4A52-854D-7643B4923067}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{301E7545-29CF-4A52-854D-7643B4923067}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{301E7545-29CF-4A52-854D-7643B4923067}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE0B9EED-E5B1-41F7-A360-47134F99FA36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE0B9EED-E5B1-41F7-A360-47134F99FA36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE0B9EED-E5B1-41F7-A360-47134F99FA36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE0B9EED-E5B1-41F7-A360-47134F99FA36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{177CB45F-95A7-43FE-983B-2148345BA7C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{177CB45F-95A7-43FE-983B-2148345BA7C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{177CB45F-95A7-43FE-983B-2148345BA7C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{177CB45F-95A7-43FE-983B-2148345BA7C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6608B727-46EF-4C8C-A44E-0B83C801E3C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6608B727-46EF-4C8C-A44E-0B83C801E3C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6608B727-46EF-4C8C-A44E-0B83C801E3C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6608B727-46EF-4C8C-A44E-0B83C801E3C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0971106C-B413-41C6-A1BC-AFF0A29D382D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0971106C-B413-41C6-A1BC-AFF0A29D382D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0971106C-B413-41C6-A1BC-AFF0A29D382D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0971106C-B413-41C6-A1BC-AFF0A29D382D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
