@@ -1,0 +1,265 @@
+﻿@model SpellChecker.Models.SpellDetailModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Spell Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SpellName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpellName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpellLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpellLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpellSchool)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpellSchool)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CastingTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CastingTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpellRange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpellRange)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VComponents)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VComponents)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SComponents)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SComponents)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HasMComponents)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasMComponents)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HasExpensiveMComponents)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasExpensiveMComponents)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MComponents)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MComponents)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Concentration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Concentration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ritual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ritual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpellTextA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpellTextA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpellTextB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpellTextB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpellTextC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpellTextC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpellTextD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpellTextD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpellTextE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpellTextE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpellTextF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpellTextF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpellTextG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpellTextG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpellTextH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpellTextH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpellTextI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpellTextI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpellSource)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpellSource)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrdSpell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrdSpell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClrSpell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClrSpell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DrdSpell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DrdSpell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PalSpell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PalSpell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RngSpell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RngSpell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SorSpell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SorSpell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WarSpell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WarSpell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WizSpell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WizSpell)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

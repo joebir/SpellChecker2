@@ -22,6 +22,7 @@ namespace SpellChecker.Services
                             e =>
                                 new SpellListItem
                                 {
+                                    SpellId = e.SpellId,
                                     SpellName = e.SpellName,
                                     SpellLevel = e.SpellLevel,
                                     SpellSchool = e.SpellSchool,
@@ -36,7 +37,7 @@ namespace SpellChecker.Services
             }
         }
 
-        public Data.Spell GetSpellById(int spellId)
+        public SpellDetailModel GetSpellById(int spellId)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -46,8 +47,9 @@ namespace SpellChecker.Services
                         .Single(e => e.SpellId == spellId);
 
                 return
-                    new Data.Spell
+                    new SpellDetailModel
                     {
+                        SpellId = entity.SpellId,
                         SpellName = entity.SpellName,
                         SpellLevel = entity.SpellLevel,
                         SpellSchool = entity.SpellSchool,

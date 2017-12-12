@@ -9,6 +9,9 @@ namespace SpellChecker.Models
 {
     public class SpellListItem
     {
+        [Key]
+        public int SpellId { get; set; }
+
         [Required]
         public string SpellName { get; set; }
 

@@ -11,6 +11,6 @@ namespace SpellChecker.Contracts
     public interface ISpell
     {
         IEnumerable<SpellListItem> GetAllSpells();
-        Spell GetSpellById(int spellId);
+        SpellDetailModel GetSpellById(int spellId);
     }
 }
