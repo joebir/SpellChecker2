@@ -11,8 +11,6 @@ namespace SpellChecker.Contracts
     public interface ISpellbook
     {
         IEnumerable<SpellListItem> GetSpells(int spellbookId);
-        bool AddEntry(int spellbookId, int spellId);
-        bool DeleteEntry(int spellbookId, int entryId);
         Spellbook GetSpellbookById(int spellbookId);
         int GetSpellCount(int spellbookId);
         bool DeleteSpellbook(int spellbookId);

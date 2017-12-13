@@ -12,6 +12,7 @@ namespace SpellChecker.Services
     public class SpellbookService : ISpellbook
     {
         private readonly Guid _userId;
+        private readonly int _currentSpellbook;
 
         public SpellbookService(Guid userId)
         {
@@ -21,7 +22,7 @@ namespace SpellChecker.Services
         public bool CreateSpellbook(SpellbookCreateModel model)
         {
             var entity =
-                new Data.Spellbook()
+                new Spellbook()
                 {
                     SpellbookName = model.SpellbookName,
                     UserId = _userId
@@ -30,35 +31,6 @@ namespace SpellChecker.Services
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Spellbooks.Add(entity);
-                return ctx.SaveChanges() == 1;
-            }
-        }
-
-        public bool AddEntry(int spellbookId, int spellId)
-        {
-            var entity =
-                new Entry()
-                {
-                    SpellbookId = spellbookId,
-                    SpellId = spellId
-                };
-
-            using (var ctx = new ApplicationDbContext())
-            {
-                ctx.Entries.Add(entity);
-                return ctx.SaveChanges() == 1;
-            }
-        }
-
-        public bool DeleteEntry(int spellbookId, int entryId)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx.Entries
-                    .Single(e => e.EntryId == entryId && GetSpellbookById(spellbookId).UserId == _userId);
-
-                ctx.Entries.Remove(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
@@ -99,7 +71,7 @@ namespace SpellChecker.Services
                     ctx.Spellbooks
                     .Single(e => e.SpellbookId == spellbookId && e.UserId == _userId);
 
-                return new Data.Spellbook
+                return new Spellbook
                 {
                     SpellbookId = entity.SpellbookId,
                     SpellbookName = entity.SpellbookName,

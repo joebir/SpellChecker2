@@ -70,6 +70,9 @@
         <td>
             @Html.ActionLink("Details", "Details", new { id = item.SpellId })
         </td>
+        <td>
+            @Html.ActionLink("Add to Spellbook", "Create", new { id = item.SpellId });
+        </td>
     </tr>
 }
 

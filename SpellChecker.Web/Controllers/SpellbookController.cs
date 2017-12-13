@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using SpellChecker.Data;
 using SpellChecker.Models;
 using SpellChecker.Services;
 using System;
@@ -17,6 +18,19 @@ namespace SpellChecker.Web.Controllers
             var userId = Guid.Parse(User.Identity.GetUserId());
 
             return new SpellbookService(userId);
+        }
+
+        [Authorize]
+        private EntryService GetEntryService()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var user =
+                    ctx.Users
+                    .Single(e => e.Id == User.Identity.GetUserId());
+
+                return new EntryService(user.CurrentSpellbook);
+            }
         }
 
         // GET: Spellbook
@@ -59,13 +73,24 @@ namespace SpellChecker.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
-        public ActionResult DeletePost(int id)
+        public ActionResult DeleteSpellbookPost(int id)
         {
             GetSpellbookService().DeleteSpellbook(id);
 
             TempData["SaveResult"] = "Your spellbook was deleted";
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            GetEntryService().DeleteEntry(id);
+
+            TempData["SaveResult"] = "The spell was removed from your spellbook.";
+
+            return RedirectToAction("Index", "SpellbookController");
         }
     }
 }
