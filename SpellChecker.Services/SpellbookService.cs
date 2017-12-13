@@ -11,6 +11,13 @@ namespace SpellChecker.Services
 {
     public class SpellbookService : ISpellbook
     {
+        private readonly Guid _userId;
+
+        public SpellbookService(Guid userId)
+        {
+            _userId = userId;
+        }
+
         public bool CreateSpellbook(SpellbookCreateModel model)
         {
             var entity = new Spellbook()
@@ -42,13 +49,29 @@ namespace SpellChecker.Services
             }
         }
 
-        public IEnumerable<SpellbookListItem> GetSpellbooks(Guid userId)
+        public SpellbookListItem GetSpellbookById(int spellbookId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx.Spellbooks
+                    .Single(e => e.SpellbookId == spellbookId && e.UserId == _userId);
+
+                return
+                    new SpellbookListItem
+                    {
+                        SpellbookName = entity.SpellbookName
+                    };
+            }
+        }
+
+        public IEnumerable<SpellbookListItem> GetSpellbooks()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 return
                     ctx.Spellbooks
-                    .Where(e => e.UserId == userId)
+                    .Where(e => e.UserId == _userId)
                     .Select(e =>
                         new SpellbookListItem
                         {
