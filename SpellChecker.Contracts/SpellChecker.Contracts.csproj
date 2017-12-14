@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IEntry.cs" />
     <Compile Include="ISpell.cs" />
     <Compile Include="ISpellbook.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

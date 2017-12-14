@@ -1,4 +1,5 @@
-﻿using SpellChecker.Services;
+﻿using SpellChecker.Contracts;
+using SpellChecker.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,22 +10,23 @@ namespace SpellChecker.Web.Controllers
 {
     public class SpellController : Controller
     {
-        private SpellService GetSpellService()
+        private readonly Lazy<ISpell> _spellService;
+
+        public SpellController()
         {
-            var svc = new SpellService();
-            return svc;
+            _spellService = new Lazy<ISpell>(() =>
+                new SpellService());
         }
 
-        // GET: Spell
         public ActionResult Index()
         {
-            var model = GetSpellService().GetAllSpells();
+            var model = _spellService.Value.GetAllSpells();
             return View(model);
         }
 
         public ActionResult Details(int id)
         {
-            var model = GetSpellService().GetSpellById(id);
+            var model = _spellService.Value.GetSpellById(id);
             return View(model);
         }
     }
