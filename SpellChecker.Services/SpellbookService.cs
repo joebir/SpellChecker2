@@ -22,7 +22,8 @@ namespace SpellChecker.Services
         {
             var entity = new Spellbook()
             {
-                SpellbookName = model.SpellbookName
+                SpellbookName = model.SpellbookName,
+                UserId = _userId
             };
 
             using (var ctx = new ApplicationDbContext())

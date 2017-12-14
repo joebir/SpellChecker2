@@ -4,14 +4,13 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Spell Details</h2>
 
 <div>
-    <h4>SpellDetailModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.SpellName)
+            Spell Name
         </dt>
 
         <dd>
@@ -19,7 +18,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SpellLevel)
+            Spell Level
         </dt>
 
         <dd>
@@ -27,7 +26,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SpellSchool)
+            Spell School
         </dt>
 
         <dd>
@@ -35,7 +34,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CastingTime)
+            Casting Time
         </dt>
 
         <dd>
@@ -43,7 +42,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SpellRange)
+            Range
         </dt>
 
         <dd>
@@ -51,7 +50,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.VComponents)
+            Verbal Components
         </dt>
 
         <dd>
@@ -59,7 +58,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SComponents)
+            Somatic Components
         </dt>
 
         <dd>
@@ -67,7 +66,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HasMComponents)
+            Material Components?
         </dt>
 
         <dd>
@@ -75,7 +74,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HasExpensiveMComponents)
+            Expensive Material Components
         </dt>
 
         <dd>
@@ -83,7 +82,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MComponents)
+            Material Components
         </dt>
 
         <dd>
@@ -91,7 +90,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Duration)
+            Duration
         </dt>
 
         <dd>
@@ -99,7 +98,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Concentration)
+            Concentration
         </dt>
 
         <dd>
@@ -107,7 +106,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Ritual)
+            Ritual
         </dt>
 
         <dd>
@@ -115,7 +114,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SpellTextA)
+            Spell Text
         </dt>
 
         <dd>
@@ -123,7 +122,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SpellTextB)
         </dt>
 
         <dd>
@@ -131,7 +129,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SpellTextC)
         </dt>
 
         <dd>
@@ -139,7 +136,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SpellTextD)
         </dt>
 
         <dd>
@@ -147,7 +143,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SpellTextE)
         </dt>
 
         <dd>
@@ -155,7 +150,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SpellTextF)
         </dt>
 
         <dd>
@@ -163,7 +157,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SpellTextG)
         </dt>
 
         <dd>
@@ -171,7 +164,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SpellTextH)
         </dt>
 
         <dd>
@@ -179,7 +171,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SpellTextI)
         </dt>
 
         <dd>
@@ -187,79 +178,62 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SpellSource)
+            Sourcebook
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.SpellSource)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BrdSpell)
-        </dt>
+        @{
+            string lists = "";
 
-        <dd>
-            @Html.DisplayFor(model => model.BrdSpell)
-        </dd>
+            if (Model.BrdSpell == true)
+            {
+                lists += "Bards, ";
+            }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ClrSpell)
-        </dt>
+            if (Model.ClrSpell == true)
+            {
+                lists += "Clerics, ";
+            }
 
-        <dd>
-            @Html.DisplayFor(model => model.ClrSpell)
-        </dd>
+            if (Model.DrdSpell == true)
+            {
+                lists += "Druids, ";
+            }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DrdSpell)
-        </dt>
+            if (Model.PalSpell == true)
+            {
+                lists += "Paladins, ";
+            }
 
-        <dd>
-            @Html.DisplayFor(model => model.DrdSpell)
-        </dd>
+            if (Model.RngSpell == true)
+            {
+                lists += "Rangers, ";
+            }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PalSpell)
-        </dt>
+            if (Model.SorSpell == true)
+            {
+                lists += "Sorcerers, ";
+            }
 
-        <dd>
-            @Html.DisplayFor(model => model.PalSpell)
-        </dd>
+            if (Model.WarSpell == true)
+            {
+                lists += "Warlocks, ";
+            }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RngSpell)
-        </dt>
+            if (Model.WizSpell == true)
+            {
+                lists += "Wizards";
+            }
 
-        <dd>
-            @Html.DisplayFor(model => model.RngSpell)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SorSpell)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SorSpell)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.WarSpell)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.WarSpell)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.WizSpell)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.WizSpell)
-        </dd>
-
+            lists.Trim(' ', ',');
+        }
     </dl>
+
+    <p>A spell for @lists</p>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Spell Index", "Index")
 </p>

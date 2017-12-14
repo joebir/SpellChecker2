@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpellChecker.Contracts", "SpellChecker.Contracts\SpellChecker.Contracts.csproj", "{75C30714-CFB3-4A65-BF88-BED6C1638E67}"
 EndProject
@@ -17,6 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpellChecker.Web.Tests", "S
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SpellChecker.SQL", "SpellChecker.SQL", "{1F1FEA59-73CE-40F5-9F05-E7023A9FD3EF}"
 	ProjectSection(SolutionItems) = preProject
+		SeedSpellbook.sql = SeedSpellbook.sql
 		SeedTables.sql = SeedTables.sql
 	EndProjectSection
 EndProject
