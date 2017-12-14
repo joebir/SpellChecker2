@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using SpellChecker.Data;
 using SpellChecker.Web.Models;
 
 namespace SpellChecker.Web.Controllers
