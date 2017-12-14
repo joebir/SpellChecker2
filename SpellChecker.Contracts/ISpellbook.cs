@@ -10,11 +10,10 @@ namespace SpellChecker.Contracts
 {
     public interface ISpellbook
     {
+        IEnumerable<SpellbookListItem> GetSpellbooks();
         IEnumerable<SpellListItem> GetSpells(int spellbookId);
-        bool AddEntry(int spellbookId, int spellId);
-        bool DeleteEntry(int spellbookId, int entryId);
-        Spellbook GetSpellbookById(int spellbookId);
-        int GetSpellCount(int spellbookId);
+        bool CreateSpellbook(SpellbookCreateModel model);
+        SpellbookListItem GetSpellbookById(int id);
         bool DeleteSpellbook(int spellbookId);
     }
 }

@@ -190,7 +190,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\EntryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SpellbookController.cs" />
@@ -199,7 +198,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -263,11 +261,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Spell\Index.cshtml" />
     <Content Include="Views\Spell\Details.cshtml" />
+    <Content Include="Views\Spellbook\Index.cshtml" />
+    <Content Include="Views\Spellbook\Create.cshtml" />
+    <Content Include="Views\Spellbook\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Entry\" />
-    <Folder Include="Views\Spellbook\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -283,6 +283,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SpellChecker.Contracts\SpellChecker.Contracts.csproj">
+      <Project>{75C30714-CFB3-4A65-BF88-BED6C1638E67}</Project>
+      <Name>SpellChecker.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SpellChecker.Data\SpellChecker.Data.csproj">
       <Project>{301E7545-29CF-4A52-854D-7643B4923067}</Project>
       <Name>SpellChecker.Data</Name>

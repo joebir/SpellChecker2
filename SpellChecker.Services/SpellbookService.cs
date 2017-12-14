@@ -20,46 +20,65 @@ namespace SpellChecker.Services
 
         public bool CreateSpellbook(SpellbookCreateModel model)
         {
-            var entity =
-                new Data.Spellbook()
-                {
-                    SpellbookName = model.SpellbookName,
-                    UserId = _userId
-                };
+            var entity = new Spellbook()
+            {
+                SpellbookName = model.SpellbookName,
+                UserId = _userId
+            };
 
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Spellbooks.Add(entity);
+
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public bool AddEntry(int spellbookId, int spellId)
-        {
-            var entity =
-                new Entry()
-                {
-                    SpellbookId = spellbookId,
-                    SpellId = spellId
-                };
-
-            using (var ctx = new ApplicationDbContext())
-            {
-                ctx.Entries.Add(entity);
-                return ctx.SaveChanges() == 1;
-            }
-        }
-
-        public bool DeleteEntry(int spellbookId, int entryId)
+        public bool DeleteSpellbook(int spellbookId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
-                    ctx.Entries
-                    .Single(e => e.EntryId == entryId && GetSpellbookById(spellbookId).UserId == _userId);
+                    ctx.Spellbooks
+                    .SingleOrDefault(e => e.SpellbookId == spellbookId);
 
-                ctx.Entries.Remove(entity);
+                if (entity == null) return false;
+
+                ctx.Spellbooks.Remove(entity);
+
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public SpellbookListItem GetSpellbookById(int spellbookId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx.Spellbooks
+                    .Single(e => e.SpellbookId == spellbookId && e.UserId == _userId);
+
+                return
+                    new SpellbookListItem
+                    {
+                        SpellbookName = entity.SpellbookName
+                    };
+            }
+        }
+
+        public IEnumerable<SpellbookListItem> GetSpellbooks()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return
+                    ctx.Spellbooks
+                    .Where(e => e.UserId == _userId)
+                    .Select(e =>
+                        new SpellbookListItem
+                        {
+                            SpellbookName = e.SpellbookName
+                        })
+                        .ToArray();
             }
         }
 
@@ -69,9 +88,9 @@ namespace SpellChecker.Services
             {
                 var svc = new SpellService();
 
-                var query =
+                return
                     ctx.Entries
-                    .Where(e => e.SpellbookId == spellbookId && GetSpellbookById(spellbookId).UserId == _userId)
+                    .Where(e => e.SpellbookId == spellbookId)
                     .Select(e =>
                         new SpellListItem
                         {
@@ -84,47 +103,7 @@ namespace SpellChecker.Services
                             SComponents = svc.GetSpellById(e.SpellId).SComponents,
                             HasMComponents = svc.GetSpellById(e.SpellId).HasMComponents,
                             Duration = svc.GetSpellById(e.SpellId).Duration,
-                        }
-                     );
-
-                return query.ToArray();
-            }
-        }
-
-        public Spellbook GetSpellbookById(int spellbookId)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx.Spellbooks
-                    .Single(e => e.SpellbookId == spellbookId && e.UserId == _userId);
-
-                return new Data.Spellbook
-                {
-                    SpellbookId = entity.SpellbookId,
-                    SpellbookName = entity.SpellbookName,
-                    UserId = entity.UserId
-                };
-            }
-        }
-
-        public int GetSpellCount(int spellbookId)
-        {
-            return GetSpells(spellbookId).Count();
-        }
-
-        public bool DeleteSpellbook(int spellbookId)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx.Spellbooks
-                    .Single(e => e.SpellbookId == spellbookId && e.UserId == _userId);
-
-                int returnNum = GetSpellCount(spellbookId) + 1;
-
-                ctx.Spellbooks.Remove(entity);
-                return ctx.SaveChanges() == returnNum;
+                        }).ToArray();
             }
         }
     }

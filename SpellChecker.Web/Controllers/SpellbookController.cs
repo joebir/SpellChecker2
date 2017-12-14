@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
+using SpellChecker.Contracts;
+using SpellChecker.Data;
 using SpellChecker.Models;
 using SpellChecker.Services;
 using System;
@@ -11,25 +13,29 @@ namespace SpellChecker.Web.Controllers
 {
     public class SpellbookController : Controller
     {
-        [Authorize]
-        private SpellbookService GetSpellbookService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
+        private readonly Lazy<ISpellbook> _spellbookService;
 
-            return new SpellbookService(userId);
+        public SpellbookController()
+        {
+            _spellbookService = new Lazy<ISpellbook>(() =>
+                new SpellbookService(Guid.Parse(User.Identity.GetUserId())));
         }
 
-        // GET: Spellbook
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
-            var model = GetSpellbookService().GetSpells(id);
+            var model = _spellbookService.Value.GetSpellbooks();
+            return View(model);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var model = _spellbookService.Value.GetSpells(id);
             return View(model);
         }
 
         public ActionResult Create()
         {
-            var model = new SpellbookCreateModel();
-            return View(model);
+            return View();
         }
 
         [HttpPost]
@@ -38,30 +44,30 @@ namespace SpellChecker.Web.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            if (!GetSpellbookService().CreateSpellbook(model))
+            if(_spellbookService.Value.CreateSpellbook(model))
             {
-                ModelState.AddModelError("", "Unable to create spellbook");
-                return View(model);
+                TempData["SaveResult"] = "Your spellbook was created.";
+                return RedirectToAction("Index");
             }
 
-            TempData["SaveResult"] = "Your spellbook was created";
-
-            return RedirectToAction("Index");
+            ModelState.AddModelError("", "Spellbook couldn't be created");
+            return View(model);
         }
 
         [ActionName("Delete")]
-        public ActionResult DeleteSpellbookGet(int id)
+        public ActionResult DeleteGet(int id)
         {
-            var model = GetSpellbookService().GetSpellbookById(id);
+            var model = _spellbookService.Value.GetSpellbookById(id);
+
             return View(model);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
-            GetSpellbookService().DeleteSpellbook(id);
+            _spellbookService.Value.DeleteSpellbook(id);
 
             TempData["SaveResult"] = "Your spellbook was deleted";
 
