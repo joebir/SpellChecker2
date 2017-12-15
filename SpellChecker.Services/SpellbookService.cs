@@ -56,12 +56,13 @@ namespace SpellChecker.Services
             {
                 var entity =
                     ctx.Spellbooks
-                    .Single(e => e.SpellbookId == spellbookId && e.UserId == _userId);
+                    .SingleOrDefault(e => e.SpellbookId == spellbookId && e.UserId == _userId);
 
                 return
                     new SpellbookListItem
                     {
-                        SpellbookName = entity.SpellbookName
+                        SpellbookName = entity.SpellbookName,
+                        UserId = entity.UserId
                     };
             }
         }
@@ -76,6 +77,7 @@ namespace SpellChecker.Services
                     .Select(e =>
                         new SpellbookListItem
                         {
+                            SpellbookId = e.SpellbookId,
                             SpellbookName = e.SpellbookName
                         })
                         .ToArray();
@@ -86,24 +88,25 @@ namespace SpellChecker.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var svc = new SpellService();
+                throw new NotImplementedException();
+            }
+        }
 
-                return
-                    ctx.Entries
-                    .Where(e => e.SpellbookId == spellbookId)
-                    .Select(e =>
-                        new SpellListItem
-                        {
-                            SpellName = svc.GetSpellById(e.SpellId).SpellName,
-                            SpellLevel = svc.GetSpellById(e.SpellId).SpellLevel,
-                            SpellSchool = svc.GetSpellById(e.SpellId).SpellSchool,
-                            CastingTime = svc.GetSpellById(e.SpellId).CastingTime,
-                            SpellRange = svc.GetSpellById(e.SpellId).SpellRange,
-                            VComponents = svc.GetSpellById(e.SpellId).VComponents,
-                            SComponents = svc.GetSpellById(e.SpellId).SComponents,
-                            HasMComponents = svc.GetSpellById(e.SpellId).HasMComponents,
-                            Duration = svc.GetSpellById(e.SpellId).Duration,
-                        }).ToArray();
+        public bool SetActiveSpellbook(int spellbookId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var spellbook = GetSpellbookById(spellbookId);
+
+                if (spellbook.UserId != _userId) return false;
+
+                var entity =
+                    ctx.Users
+                    .SingleOrDefault(e => Guid.Parse(e.Id) == _userId);
+
+                entity.CurrentSpellbook = spellbookId;
+
+                return ctx.SaveChanges() == 1;
             }
         }
     }

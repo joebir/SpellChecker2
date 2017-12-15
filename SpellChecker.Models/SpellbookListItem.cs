@@ -14,5 +14,7 @@ namespace SpellChecker.Models
 
         [Required]
         public string SpellbookName { get; set; }
+        [Required]
+        public Guid UserId { get; set; }
     }
 }

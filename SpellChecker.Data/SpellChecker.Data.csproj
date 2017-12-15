@@ -55,15 +55,6 @@
   <ItemGroup>
     <Compile Include="Entry.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\201712141843106_InitialCreate.cs" />
-    <Compile Include="Migrations\201712141843106_InitialCreate.Designer.cs">
-      <DependentUpon>201712141843106_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712151551438_12_15_Attempt.cs" />
-    <Compile Include="Migrations\201712151551438_12_15_Attempt.Designer.cs">
-      <DependentUpon>201712151551438_12_15_Attempt.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spell.cs" />
     <Compile Include="Spellbook.cs" />
@@ -71,14 +62,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712141843106_InitialCreate.resx">
-      <DependentUpon>201712141843106_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712151551438_12_15_Attempt.resx">
-      <DependentUpon>201712151551438_12_15_Attempt.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

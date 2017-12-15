@@ -73,5 +73,14 @@ namespace SpellChecker.Web.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult Select(int id)
+        {
+            _spellbookService.Value.SetActiveSpellbook(id);
+
+            TempData["SaveResult"] = "You have selected a new spellbook.";
+
+            return RedirectToAction("Index");
+        }
     }
 }
