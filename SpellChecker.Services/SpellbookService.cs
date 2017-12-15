@@ -100,9 +100,11 @@ namespace SpellChecker.Services
 
                 if (spellbook.UserId != _userId) return false;
 
+                string userId = _userId.ToString();
+
                 var entity =
                     ctx.Users
-                    .SingleOrDefault(e => Guid.Parse(e.Id) == _userId);
+                    .SingleOrDefault(e => e.Id == userId);
 
                 entity.CurrentSpellbook = spellbookId;
 
