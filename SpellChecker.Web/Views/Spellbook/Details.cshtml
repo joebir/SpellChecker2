@@ -1,0 +1,76 @@
+﻿@model IEnumerable<SpellChecker.Models.SpellListItem>
+
+@{
+    ViewBag.Title = "Spellbook";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Spell<br />Name
+        </th>
+        <th>
+            Spell<br />Level
+        </th>
+        <th>
+            Spell<br />School
+        </th>
+        <th>
+            Casting<br />Time
+        </th>
+        <th>
+            Range
+        </th>
+        <th>
+            Verbal<br />Components
+        </th>
+        <th>
+            Somatic<br />Components
+        </th>
+        <th>
+            Material<br />Components
+        </th>
+        <th>
+            Duration
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpellName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpellLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpellSchool)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CastingTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpellRange)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VComponents)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SComponents)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HasMComponents)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duration)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SpellId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SpellId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SpellId })
+        </td>
+    </tr>
+}
+
+</table>
