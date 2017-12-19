@@ -84,11 +84,39 @@ namespace SpellChecker.Services
             }
         }
 
-        public IEnumerable<SpellListItem> GetSpells(int spellbookId)
+        public IEnumerable<EntryListItem> GetSpells(int spellbookId)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                throw new NotImplementedException();
+                var query =
+                    ctx.Entries
+                    .Where(e => e.SpellbookId == spellbookId)
+                    .Select(e =>
+                        new EntryListItem
+                        {
+                            EntryId = e.EntryId,
+                            SpellId = e.SpellId
+                        })
+                    .ToArray();
+
+                SpellService spellSvc = new SpellService();
+
+                foreach(var item in query)
+                {
+                    var spell = spellSvc.GetSpellById(spellId: item.SpellId);
+
+                    item.SpellName = spell.SpellName;
+                    item.SpellLevel = spell.SpellLevel;
+                    item.SpellSchool = spell.SpellSchool;
+                    item.CastingTime = spell.CastingTime;
+                    item.SpellRange = spell.SpellRange;
+                    item.VComponents = spell.VComponents;
+                    item.SComponents = spell.SComponents;
+                    item.HasMComponents = spell.HasMComponents;
+                    item.Duration = spell.Duration;
+                }
+
+                return query;
             }
         }
 

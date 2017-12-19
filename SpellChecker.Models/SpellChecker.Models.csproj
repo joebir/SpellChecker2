@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntryCreateModel.cs" />
+    <Compile Include="EntryListItem.cs" />
     <Compile Include="SpellbookCreateModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpellbookListItem.cs" />
