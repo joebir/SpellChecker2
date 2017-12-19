@@ -68,7 +68,9 @@
             @Html.DisplayFor(modelItem => item.Duration)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.SpellId })
+            @Html.ActionLink("Details", "Details", new { id = item.SpellId }) <br />
+            @Html.ActionLink("Add Entry", "Create", new { id = item.SpellId })
+
         </td>
     </tr>
 }

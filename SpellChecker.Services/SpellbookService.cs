@@ -84,7 +84,7 @@ namespace SpellChecker.Services
             }
         }
 
-        public IEnumerable<SpellListItem> GetSpells(int spellbookId)
+        public IEnumerable<EntryListItem> GetSpells(int spellbookId)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -92,8 +92,9 @@ namespace SpellChecker.Services
                     ctx.Entries
                     .Where(e => e.SpellbookId == spellbookId)
                     .Select(e =>
-                        new SpellListItem
+                        new EntryListItem
                         {
+                            EntryId = e.EntryId,
                             SpellId = e.SpellId
                         })
                     .ToArray();

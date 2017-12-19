@@ -1,4 +1,5 @@
-﻿using SpellChecker.Contracts;
+﻿using Microsoft.AspNet.Identity;
+using SpellChecker.Contracts;
 using SpellChecker.Services;
 using System;
 using System.Collections.Generic;
