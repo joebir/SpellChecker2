@@ -80,7 +80,7 @@ namespace SpellChecker.Services
                             SpellbookId = e.SpellbookId,
                             SpellbookName = e.SpellbookName
                         })
-                        .ToArray();
+                        .ToList();
             }
         }
 
@@ -97,7 +97,7 @@ namespace SpellChecker.Services
                             EntryId = e.EntryId,
                             SpellId = e.SpellId
                         })
-                    .ToArray();
+                    .ToList();
 
                 SpellService spellSvc = new SpellService();
 
@@ -117,26 +117,6 @@ namespace SpellChecker.Services
                 }
 
                 return query;
-            }
-        }
-
-        public bool SetActiveSpellbook(int spellbookId)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var spellbook = GetSpellbookById(spellbookId);
-
-                if (spellbook.UserId != _userId) return false;
-
-                string userId = _userId.ToString();
-
-                var entity =
-                    ctx.Users
-                    .SingleOrDefault(e => e.Id == userId);
-
-                entity.CurrentSpellbook = spellbookId;
-
-                return ctx.SaveChanges() == 1;
             }
         }
     }

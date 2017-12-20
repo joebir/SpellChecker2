@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNet.Identity;
+@using SpellChecker.Models;
+@using SpellChecker.Services;
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Adding Spells</h2>
+
+<div class="col-md-5">
+    @{
+        List<SelectListItem> spellItems = new List<SelectListItem>();
+        List<SpellListItem> spells =
+            (List<SpellListItem>)new SpellService().GetAllSpells("");
+
+        foreach (var item in spells)
+        {
+            spellItems.Add(new SelectListItem
+            {
+                Text = item.SpellName,
+                Value = item.SpellId.ToString()
+            });
+        }
+
+        @Html.DropDownList("spellDropdown", spellItems, new { @class = "form-control" })
+    }
+</div>
+
+<div class="col-md-5">
+    @{ 
+        List<SelectListItem> spellbookItems = new List<SelectListItem>();
+        List<SpellbookListItem> spellbooks =
+            (List<SpellbookListItem>)new SpellbookService(Guid.Parse(User.Identity.GetUserId())).GetSpellbooks();
+
+        foreach(var item in spellbooks)
+        {
+            spellbookItems.Add(new SelectListItem
+            {
+                Text = item.SpellbookName,
+                Value = item.SpellbookId.ToString()
+            });
+        }
+
+        @Html.DropDownList("spellbookDropdown", spellbookItems, new { @class = "form-control" })
+    }
+</div>
+
+<div class="col-md-2">
+    @using (Html.BeginForm("Create", "EntryController"))
+    {
+        <input type="submit" value="Create" />
+    }
+</div>

@@ -19,9 +19,9 @@ namespace SpellChecker.Web.Controllers
                 new SpellService());
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            var model = _spellService.Value.GetAllSpells();
+            var model = _spellService.Value.GetAllSpells(searchString);
             return View(model);
         }
 

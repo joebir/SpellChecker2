@@ -11,20 +11,13 @@ namespace SpellChecker.Services
 {
     public class EntryService : IEntry
     {
-        private readonly int _spellbookId;
-
-        public EntryService(int spellbookId)
-        {
-            _spellbookId = spellbookId;
-        }
-
-        public bool CreateEntry(int spellId)
+        public bool CreateEntry(int spellId, int spellbookId)
         {
             var entity =
                     new Entry
                     {
                         SpellId = spellId,
-                        SpellbookId = _spellbookId
+                        SpellbookId = spellbookId
                     };
 
             using (var ctx = new ApplicationDbContext())
@@ -46,6 +39,18 @@ namespace SpellChecker.Services
 
                 ctx.Entries.Remove(entity);
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public int GetEntrySpellbook(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Entries
+                    .SingleOrDefault(e => e.EntryId == id);
+
+                return entity.SpellbookId;
             }
         }
     }
