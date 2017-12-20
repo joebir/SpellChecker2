@@ -1,6 +1,7 @@
-﻿@using Microsoft.AspNet.Identity;
-@using SpellChecker.Models;
-@using SpellChecker.Services;
+﻿@using Microsoft.AspNet.Identity
+@using SpellChecker.Models
+@using SpellChecker.Services
+@model EntryCreateModel
 
 
 @{
@@ -9,47 +10,49 @@
 
 <h2>Adding Spells</h2>
 
-<div class="col-md-5">
-    @{
-        List<SelectListItem> spellItems = new List<SelectListItem>();
-        List<SpellListItem> spells =
-            (List<SpellListItem>)new SpellService().GetAllSpells("");
 
-        foreach (var item in spells)
-        {
-            spellItems.Add(new SelectListItem
+@using (Html.BeginForm("Create", "Entry"))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-md-5">
+        @{
+            List<SelectListItem> spellItems = new List<SelectListItem>();
+            List<SpellListItem> spells =
+                (List<SpellListItem>)new SpellService().GetAllSpells("");
+
+            foreach (var item in spells)
             {
-                Text = item.SpellName,
-                Value = item.SpellId.ToString()
-            });
+                spellItems.Add(new SelectListItem
+                {
+                    Text = item.SpellName,
+                    Value = item.SpellId.ToString()
+                });
+            }
+            
+            @Html.DropDownListFor(model => model.SpellId, spellItems, new { @class = "form-control" })
         }
+    </div>
 
-        @Html.DropDownList("spellDropdown", spellItems, new { @class = "form-control" })
-    }
-</div>
+    <div class="col-md-5">
+        @{
+            List<SelectListItem> spellbookItems = new List<SelectListItem>();
+            List<SpellbookListItem> spellbooks =
+                (List<SpellbookListItem>)new SpellbookService(Guid.Parse(User.Identity.GetUserId())).GetSpellbooks();
 
-<div class="col-md-5">
-    @{ 
-        List<SelectListItem> spellbookItems = new List<SelectListItem>();
-        List<SpellbookListItem> spellbooks =
-            (List<SpellbookListItem>)new SpellbookService(Guid.Parse(User.Identity.GetUserId())).GetSpellbooks();
-
-        foreach(var item in spellbooks)
-        {
-            spellbookItems.Add(new SelectListItem
+            foreach (var item in spellbooks)
             {
-                Text = item.SpellbookName,
-                Value = item.SpellbookId.ToString()
-            });
+                spellbookItems.Add(new SelectListItem
+                {
+                    Text = item.SpellbookName,
+                    Value = item.SpellbookId.ToString()
+                });
+            }
+
+            @Html.DropDownListFor(model => model.SpellbookId, spellbookItems, new { @class = "form-control" })
         }
+    </div>
 
-        @Html.DropDownList("spellbookDropdown", spellbookItems, new { @class = "form-control" })
-    }
-</div>
-
-<div class="col-md-2">
-    @using (Html.BeginForm("Create", "EntryController"))
-    {
+    <div class="col-md-2">
         <input type="submit" value="Create" />
-    }
-</div>
+    </div>
+}

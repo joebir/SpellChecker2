@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<SpellChecker.Models.EntryListItem>
 
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = "Spellbook";
 }
 
-<h2>View</h2>
+<h2>Spellbook</h2>
 
 <table class="table">
     <tr>
@@ -68,8 +68,8 @@
             @Html.DisplayFor(modelItem => item.Duration)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", "SpellController", new { id=item.SpellId }, null) <br />
-            @Html.ActionLink("Delete Entry", "", new { id=item.EntryId })
+            @Html.ActionLink("Details", "Details", "Spell", new { id=item.SpellId }, null) <br />
+            @Html.ActionLink("Delete Entry", "DeleteEntry", new { id=item.EntryId })
         </td>
     </tr>
 }

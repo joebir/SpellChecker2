@@ -26,9 +26,9 @@ namespace SpellChecker.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(string spellId, string spellbookId)
+        public ActionResult Create(EntryCreateModel entry)
         {
-            _entryService.Value.CreateEntry(Int32.Parse(spellId), Int32.Parse(spellbookId));
+            _entryService.Value.CreateEntry(Int32.Parse(entry.SpellId), Int32.Parse(entry.SpellbookId));
 
             return RedirectToAction("Index");
         }

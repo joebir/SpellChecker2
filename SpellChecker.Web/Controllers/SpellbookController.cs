@@ -25,24 +25,28 @@ namespace SpellChecker.Web.Controllers
                 new EntryService());
         }
 
+        [Authorize]
         public ActionResult Index()
         {
             var model = _spellbookService.Value.GetSpellbooks();
             return View(model);
         }
 
+        [Authorize]
         public ActionResult Details(int id)
         {
             var model = _spellbookService.Value.GetSpells(id);
             return View(model);
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create(SpellbookCreateModel model)
         {
