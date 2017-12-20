@@ -11,13 +11,12 @@ namespace SpellChecker.Services
 {
     public class SpellService : ISpell
     {
-        public IEnumerable<SpellListItem> GetAllSpells()
+        public IEnumerable<SpellListItem> GetAllSpells(string searchString)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                return
-                    ctx
-                        .Spells
+                var spells =
+                    ctx.Spells
                         .Select(
                             e =>
                                 new SpellListItem
@@ -32,8 +31,12 @@ namespace SpellChecker.Services
                                     SComponents = e.SComponents,
                                     HasMComponents = e.HasMComponents,
                                     Duration = e.Duration
-                                })
-                            .ToArray();
+                                });
+
+                if(!String.IsNullOrWhiteSpace(searchString))
+                    spells = spells.Where(e => e.SpellName.Contains(searchString));
+
+                return spells.ToList();
             }
         }
 

@@ -10,7 +10,7 @@ namespace SpellChecker.Contracts
 {
     public interface ISpell
     {
-        IEnumerable<SpellListItem> GetAllSpells();
+        IEnumerable<SpellListItem> GetAllSpells(string searchString);
         SpellDetailModel GetSpellById(int spellId);
     }
 }

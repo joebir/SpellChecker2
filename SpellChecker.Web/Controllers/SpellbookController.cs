@@ -14,31 +14,39 @@ namespace SpellChecker.Web.Controllers
     public class SpellbookController : Controller
     {
         private readonly Lazy<ISpellbook> _spellbookService;
+        private readonly Lazy<IEntry> _entryService;
 
         public SpellbookController()
         {
             _spellbookService = new Lazy<ISpellbook>(() =>
                 new SpellbookService(Guid.Parse(User.Identity.GetUserId())));
+
+            _entryService = new Lazy<IEntry>(() =>
+                new EntryService());
         }
 
+        [Authorize]
         public ActionResult Index()
         {
             var model = _spellbookService.Value.GetSpellbooks();
             return View(model);
         }
 
+        [Authorize]
         public ActionResult Details(int id)
         {
             var model = _spellbookService.Value.GetSpells(id);
             return View(model);
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create(SpellbookCreateModel model)
         {
@@ -74,13 +82,17 @@ namespace SpellChecker.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Select(int id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteEntry(int id)
         {
-            _spellbookService.Value.SetActiveSpellbook(id);
+            int spellbookId = _entryService.Value.GetEntrySpellbook(id);
 
-            TempData["SaveResult"] = "You have selected a new spellbook.";
+            _entryService.Value.DeleteEntry(id);
 
-            return RedirectToAction("Index");
+            TempData["SaveResult"] = "The entry was deleted";
+
+            return RedirectToAction("Details", spellbookId);
         }
     }
 }

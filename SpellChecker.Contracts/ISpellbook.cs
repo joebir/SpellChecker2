@@ -15,6 +15,5 @@ namespace SpellChecker.Contracts
         bool CreateSpellbook(SpellbookCreateModel model);
         SpellbookListItem GetSpellbookById(int id);
         bool DeleteSpellbook(int spellbookId);
-        bool SetActiveSpellbook(int spellbookId);
     }
 }

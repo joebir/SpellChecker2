@@ -43,7 +43,6 @@
     <Compile Include="IEntry.cs" />
     <Compile Include="ISpell.cs" />
     <Compile Include="ISpellbook.cs" />
-    <Compile Include="ICurrent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
