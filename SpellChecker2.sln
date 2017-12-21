@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SpellChecker.SQL", "SpellCh
 		SeedTables.sql = SeedTables.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpellChecker.API", "SpellChecker.API\SpellChecker.API.csproj", "{E95F838F-BFDF-4A08-9B6E-D1F5A42BA491}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{0971106C-B413-41C6-A1BC-AFF0A29D382D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0971106C-B413-41C6-A1BC-AFF0A29D382D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0971106C-B413-41C6-A1BC-AFF0A29D382D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E95F838F-BFDF-4A08-9B6E-D1F5A42BA491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E95F838F-BFDF-4A08-9B6E-D1F5A42BA491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E95F838F-BFDF-4A08-9B6E-D1F5A42BA491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E95F838F-BFDF-4A08-9B6E-D1F5A42BA491}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

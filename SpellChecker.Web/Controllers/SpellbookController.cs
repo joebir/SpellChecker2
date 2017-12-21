@@ -25,6 +25,11 @@ namespace SpellChecker.Web.Controllers
                 new EntryService());
         }
 
+        public SpellbookController(Lazy<ISpellbook> spellbookService)
+        {
+            _spellbookService = spellbookService;
+        }
+
         [Authorize]
         public ActionResult Index()
         {
@@ -52,7 +57,7 @@ namespace SpellChecker.Web.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            if(_spellbookService.Value.CreateSpellbook(model))
+            if (_spellbookService.Value.CreateSpellbook(model))
             {
                 TempData["SaveResult"] = "Your spellbook was created.";
                 return RedirectToAction("Index");
@@ -93,6 +98,42 @@ namespace SpellChecker.Web.Controllers
             TempData["SaveResult"] = "The entry was deleted";
 
             return RedirectToAction("Details", spellbookId);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var detail = _spellbookService.Value.GetSpellbookById(id);
+
+            var model =
+                new SpellbookEditModel
+                {
+                    SpellbookId = detail.SpellbookId,
+                    SpellbookName = detail.SpellbookName
+                };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, SpellbookEditModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.SpellbookId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            if(_spellbookService.Value.UpdateSpellbook(model))
+            {
+                TempData["SaveResult"] = "Your spellbook's name was changed successfully";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Your spellbook's name couldn't be changed");
+            return View(model);
         }
     }
 }

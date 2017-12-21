@@ -267,6 +267,7 @@
     <Content Include="Views\Spellbook\Delete.cshtml" />
     <Content Include="Views\Spellbook\Details.cshtml" />
     <Content Include="Views\Entry\Index.cshtml" />
+    <Content Include="Views\Spellbook\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

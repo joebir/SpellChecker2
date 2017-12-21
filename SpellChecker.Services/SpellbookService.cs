@@ -119,5 +119,20 @@ namespace SpellChecker.Services
                 return query;
             }
         }
+
+        public bool UpdateSpellbook(SpellbookEditModel model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Spellbooks
+                        .Single(e => e.SpellbookId == model.SpellbookId);
+
+                entity.SpellbookName = model.SpellbookName;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

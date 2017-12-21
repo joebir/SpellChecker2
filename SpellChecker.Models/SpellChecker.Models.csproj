@@ -45,10 +45,10 @@
     <Compile Include="EntryListItem.cs" />
     <Compile Include="SpellbookCreateModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpellbookEditModel.cs" />
     <Compile Include="SpellbookListItem.cs" />
     <Compile Include="SpellDetailModel.cs" />
     <Compile Include="SpellListItem.cs" />
-    <Compile Include="UserRolesDTO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

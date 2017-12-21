@@ -26,6 +26,7 @@ namespace SpellChecker.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(EntryCreateModel entry)
         {
             _entryService.Value.CreateEntry(Int32.Parse(entry.SpellId), Int32.Parse(entry.SpellbookId));
